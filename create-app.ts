@@ -1,10 +1,12 @@
 import { spawnSync } from "child_process";
-import path from "path";
-const projectPath = path.resolve(__dirname);
-function createApp() {
-  spawnSync("ts-node ./templates/next/script.ts", { stdio: "inherit", shell: true });
-  spawnSync("ts-node ./templates/nest/script.ts", { stdio: "inherit", shell: true });
-  spawnSync(`cp -r ${projectPath}/templates/project/* test`, { stdio: "inherit", shell: true })
-  spawnSync(`cd test && yarn`, { stdio: "inherit", shell: true })
+
+export async function createApp(config: { packageName: string, appPath: string, packageManager: string, render: string, server: string }) {
+  const { render, server, packageManager, packageName, appPath: projectPath } = config;
+  spawnSync(`mkdir -p ${projectPath}`, { stdio: "inherit", shell: true });
+  spawnSync(`export appPath=${projectPath} && node ./templates/${render}/script.js`, { stdio: "inherit", shell: true });
+  spawnSync(`export appPath=${projectPath} && node ./templates/${server}/script.js`, { stdio: "inherit", shell: true });
+  spawnSync(`cp -r ./templates/project/* ${projectPath}`, { stdio: "inherit", shell: true })
+  spawnSync(`cd ${projectPath} && ${packageManager} install`, { stdio: "inherit", shell: true })
 }
-createApp();
+
+export class DownloadError extends Error { }

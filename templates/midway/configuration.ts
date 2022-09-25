@@ -1,22 +1,30 @@
 //@ts-nocheck
-import { App, Configuration } from '@midwayjs/decorator';
-import { ILifeCycle } from '@midwayjs/core';
-import { Application } from 'egg';
+import { Configuration, App } from '@midwayjs/decorator';
+import * as koa from '@midwayjs/koa';
+import * as validate from '@midwayjs/validate';
+import * as info from '@midwayjs/info';
 import { join } from 'path';
-import * as egg from '@midwayjs/web';
+import { ReportMiddleware } from './middleware/report.middleware';
 import { NextMiddleware } from './middleware/next-bridge.middleware';
 import { getKoaApi } from './bridge';
 
 @Configuration({
-  imports: [egg],
+  imports: [
+    koa,
+    validate,
+    {
+      component: info,
+      enabledEnvironment: ['local'],
+    },
+  ],
   importConfigs: [join(__dirname, './config')],
 })
 export class ContainerLifeCycle implements ILifeCycle {
   @App()
-  app: Application;
+  app: koa.Application;
 
   async onReady() {
-    this.app.useMiddleware([NextMiddleware]);
+    this.app.useMiddleware([NextMiddleware, ReportMiddleware]);
     (global as any).serverFetch = getKoaApi.bind(
       this,
       this.app,

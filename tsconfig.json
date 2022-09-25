@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "strict": true,
+    "outFile": "dist/index.js",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": false
+  },
+  "include": ["index.ts"],
+  "exclude": ["templates", "dist"]
+}

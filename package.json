@@ -1,10 +1,44 @@
 {
-  "name": "full-node-cli",
+  "name": "create-full-app",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Provide single node.js server with popular ssr and web framework",
   "license": "MIT",
-  "dependencies": {
+  "author": "keyboard3",
+  "bin": {
+    "create-full-app": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "esbuild index.ts --bundle --outfile=dist/index.js --platform=node && cp -r templates dist/ && cp package.json dist/ ",
+    "dev": "esbuild index.ts --bundle --outfile=dist/index.js --platform=node --watch && cp -r templates dist/ && cp package.json dist/ "
+  },
+  "keywords": [
+    "next.js",
+    "nest.js",
+    "midway.js",
+    "node"
+  ],
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keyboard3/create-full-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/keyboard3/create-full-app/issues"
+  },
+  "homepage": "https://github.com/keyboard3/create-full-app",
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
     "@types/node": "^18.7.19",
+    "@types/prompts": "^2.0.14",
+    "kolorist": "^1.6.0",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"
   }

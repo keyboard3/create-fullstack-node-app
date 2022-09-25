@@ -15,8 +15,9 @@ const Home: NextPage = ({ data }: { data: string }) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        data: {data} <br/>(from nest.js controller api)
+        Next.js
         </h1>
+        <p>data: {data} <br/>(from controller api)</p>
       </main>
 
       <footer className={styles.footer}>
@@ -38,7 +39,7 @@ const Home: NextPage = ({ data }: { data: string }) => {
 export default Home
 
 export async function getServerSideProps(context: NextPageContext) {
-  const response = await (global as any).serverFetch('http://127.0.0.1/api/hello');
+  const response = await (global as any).serverFetch('http://127.0.0.1/api/data');
   return {
     props: { data: response.text() }, // will be passed to the page component as props
   }
