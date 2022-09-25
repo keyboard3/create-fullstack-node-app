@@ -1,12 +1,12 @@
 {
-  "name": "create-full-app",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "create-fullstack-node-app",
+  "version": "0.0.4",
+  "main": "./dist/index.js",
   "description": "Provide single node.js server with popular ssr and web framework",
   "license": "MIT",
   "author": "keyboard3",
   "bin": {
-    "create-full-app": "./dist/index.js"
+    "create-fullstack-node-app": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -19,19 +19,21 @@
     "next.js",
     "nest.js",
     "midway.js",
-    "node"
+    "boilerplate",
+    "starter files",
+    "templates"
   ],
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keyboard3/create-full-app.git"
+    "url": "git+https://github.com/keyboard3/create-fullstack-node-app.git"
   },
   "bugs": {
-    "url": "https://github.com/keyboard3/create-full-app/issues"
+    "url": "https://github.com/keyboard3/create-fullstack-node-app/issues"
   },
-  "homepage": "https://github.com/keyboard3/create-full-app",
+  "homepage": "https://github.com/keyboard3/create-fullstack-node-app",
   "devDependencies": {
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.7.19",

@@ -4,7 +4,6 @@
     "moduleResolution": "node",
     "module": "CommonJS",
     "strict": true,
-    "outFile": "dist/index.js",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": false

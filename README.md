@@ -1,8 +1,8 @@
-# create-full-app
+# create-fullstack-node-app
 Provide single node.js server with popular ssr and web framework
 
 With NPM:
 
 ```bash
-$ npx create-full-app@latest
+npx create-fullstack-node-app@latest
 ```

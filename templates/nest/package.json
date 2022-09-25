@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "fullstack-node-app",
   "workspaces": [
     "server",
     "render"
@@ -8,7 +9,7 @@
     "renderBuild": "cd render && npm run build",
     "serverBuild": "cd server && npm run build",
     "build": "npm run renderBuild && npm run serverBuild",
-    "dev": "cd server && npm run dev",
-    "start": "cd server && npm run start"
+    "dev": "cd server && npm run start:dev",
+    "start": "cd server && npm run start:prod"
   }
 }

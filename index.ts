@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
 import prompts from 'prompts'
 import fs from 'node:fs'
@@ -16,10 +17,10 @@ const argv = minimist<{
 }>(process.argv.slice(1), { string: ['_'] })
 const cwd = process.cwd()
 
-const defaultTargetDir = 'full-app-project'
+const defaultTargetDir = 'fullstack-node-app'
 
 async function init() {
-  const argTargetDir = formatTargetDir(argv._[0])
+  const argTargetDir = formatTargetDir(argv._[1])
 
   let targetDir = argTargetDir || defaultTargetDir
 

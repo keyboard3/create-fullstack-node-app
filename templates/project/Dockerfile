@@ -29,5 +29,4 @@ COPY --from=serverbuilder /app/server/dist ./server/dist
 COPY --from=serverbuilder /app/server/.production.env ./server/
 
 ENV NODE_ENV=production
-ENV BASE_PATH=/next-nest
 CMD ["npm","run","start"]

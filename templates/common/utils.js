@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 function changePackageJson(packagePath, dirPath) {
   try {
@@ -10,5 +11,10 @@ function changePackageJson(packagePath, dirPath) {
     console.error(err);
   }
 }
-
-module.exports = changePackageJson;
+function getCorrectPath(filePath) {
+  return path.join(__dirname, filePath);
+}
+module.exports = {
+  changePackageJson,
+  getCorrectPath
+};
