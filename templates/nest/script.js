@@ -1,15 +1,15 @@
 const { spawnSync } = require("node:child_process");
 const { changePackageJson } = require("../common/utils");
+const fse = require("fs-extra");
 const path = require("path");
-const projectPath = process.env.appPath;
+
+const { PROJECT_PATH, PACKAGE_NAME } = process.env;
+
 //创建项目
-spawnSync(`cd ${projectPath} && nest new server`, { stdio: "inherit", shell: true });
+spawnSync(`cd ${PROJECT_PATH} && npx @nestjs/cli new server`, { stdio: "inherit", shell: true });
 
 //将文件覆盖进去
-spawnSync(`cp \
-${path.join(__dirname, "main.ts")} \
-${path.join(__dirname, "app.controller.ts")} \
-${path.join(__dirname, "../common/bridge.ts")} \
-${projectPath}/server/src/`, { stdio: "inherit", shell: true });
-
-changePackageJson(`${projectPath}/server/package.json`, projectPath + "-server");
+fse.copySync(`${path.join(__dirname, "main.ts")}`, `${PROJECT_PATH}/server/src/main.ts`);
+fse.copySync(`${path.join(__dirname, "app.controller.ts")}`,`${PROJECT_PATH}/server/src/app.controller.ts`);
+fse.copySync(`${path.join(__dirname, "../common/bridge.ts")}`,`${PROJECT_PATH}/server/src/bridge.ts`);
+changePackageJson(`${PROJECT_PATH}/server/package.json`,PACKAGE_NAME + "-server");

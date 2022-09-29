@@ -1,12 +1,15 @@
 const { spawnSync } = require("node:child_process");
 const { changePackageJson } = require("../common/utils");
 const path = require("path");
+const fse = require("fs-extra");
 
-const projectPath = process.env.appPath;
+const { PROJECT_PATH, PACKAGE_NAME } = process.env;
+
 //创建项目
-spawnSync(`cd ${projectPath} && npx create-next-app@latest --typescript render`, { stdio: "inherit", shell: true });
+spawnSync(`cd ${PROJECT_PATH} && npx create-next-app@latest --typescript render`,{ stdio: "inherit", shell: true });
 
-spawnSync(`cp ${path.join(__dirname, "index.js")} ${projectPath}/render/`, { stdio: "inherit", shell: true });
-spawnSync(`cp ${path.join(__dirname, "page.tsx")} ${projectPath}/render/pages/index.tsx`, { stdio: "inherit", shell: true });
+//将文件覆盖进去
+fse.copySync(`${path.join(__dirname, "index.js")}`,`${PROJECT_PATH}/render/index.js`);
+fse.copySync(`${path.join(__dirname, "page.tsx")}`,`${PROJECT_PATH}/render/pages/index.tsx`);
 
-changePackageJson(`${projectPath}/render/package.json`, projectPath + "-render");
+changePackageJson(`${PROJECT_PATH}/render/package.json`,PACKAGE_NAME + "-render");
