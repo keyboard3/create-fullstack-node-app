@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-node-app",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "./dist/index.js",
   "description": "Provide single node.js server with popular ssr and web framework",
   "license": "MIT",
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "node build.js",
-    "dev": "cross-env NODE_ENV=dev esbuild index.ts --bundle --outfile=dist/index.js --platform=node --watch && cp -r templates dist/ && cp package.json dist/ "
+    "dev": "cross-env NODE_ENV=dev esbuild index.ts --bundle --outfile=dist/index.js --platform=node --watch"
   },
   "keywords": [
     "next.js",
