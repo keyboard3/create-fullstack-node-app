@@ -1,18 +1,18 @@
 import { spawnSync } from "child_process";
 const { changePackageJson } = require("./templates/common/utils")
 const path = require("path");
+import { copySync } from 'fs-extra'
 
 export async function createApp(config: { packageName: string, appPath: string, packageManager: string, render: string, server: string }) {
-  const { render, server, packageManager, appPath: projectPath } = config;
+  const { render, server, packageName, appPath: projectPath } = config;
   
-  spawnSync(`cp \
-  ${path.join(__dirname, `./templates/project/*`)} \
-  ${path.join(__dirname, `./templates/${server}/package.json`)} \
-  ${projectPath}`, { stdio: "inherit", shell: true })
-  changePackageJson(`${projectPath}/package.json`, projectPath);
+  copySync(path.join(__dirname, `./templates/project`), projectPath)
+  copySync(path.join(__dirname, `./templates/${server}/package.json`), `${projectPath}/package.json`)
+
+  changePackageJson(`${projectPath}/package.json`, packageName);
   
-  spawnSync(`export appPath=${projectPath} && node ${path.join(__dirname, `./templates/${render}/script.js`)}`, { stdio: "inherit", shell: true });
-  spawnSync(`export appPath=${projectPath} && node ${path.join(__dirname, `./templates/${server}/script.js`)}`, { stdio: "inherit", shell: true });
+  spawnSync(`node ${path.join(__dirname, `./templates/${render}/script.js`)}`, { stdio: "inherit", shell: true, env: { PROJECT_PATH: projectPath, PACKAGE_NAME: packageName } });
+  spawnSync(`node ${path.join(__dirname, `./templates/${server}/script.js`)}`, { stdio: "inherit", shell: true, env: { PROJECT_PATH: projectPath, PACKAGE_NAME: packageName } });
 }
 
 export class DownloadError extends Error { }

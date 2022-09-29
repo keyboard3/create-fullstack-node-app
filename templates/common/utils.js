@@ -1,9 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-function changePackageJson(packagePath, dirPath) {
+function changePackageJson(packagePath, packageName) {
   try {
-    const packageName = dirPath.slice(dirPath.lastIndexOf("/") + 1);
     let packageJson = String(fs.readFileSync(packagePath));
     packageJson = packageJson.replace(/"name":\s*".+"/, `"name": "${packageName}"`);
     fs.writeFileSync(packagePath, packageJson);

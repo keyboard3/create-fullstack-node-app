@@ -12,8 +12,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "esbuild index.ts --bundle --outfile=dist/index.js --platform=node && cp -r templates dist/ && cp package.json dist/ ",
-    "dev": "esbuild index.ts --bundle --outfile=dist/index.js --platform=node --watch && cp -r templates dist/ && cp package.json dist/ "
+    "build": "node build.js",
+    "dev": "cross-env NODE_ENV=dev esbuild index.ts --bundle --outfile=dist/index.js --platform=node --watch && cp -r templates dist/ && cp package.json dist/ "
   },
   "keywords": [
     "next.js",
@@ -35,9 +35,12 @@
   },
   "homepage": "https://github.com/keyboard3/create-fullstack-node-app",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/minimist": "^1.2.2",
-    "@types/node": "^18.7.19",
+    "@types/node": "^18.7.21",
     "@types/prompts": "^2.0.14",
+    "cross-env": "^7.0.3",
+    "fs-extra": "^10.1.0",
     "kolorist": "^1.6.0",
     "minimist": "^1.2.6",
     "prompts": "^2.4.2",

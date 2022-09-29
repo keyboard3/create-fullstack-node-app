@@ -1,15 +1,16 @@
 const { spawnSync } = require("node:child_process");
 const { changePackageJson } = require("../common/utils");
+const fse = require("fs-extra");
 const path = require("path");
-const projectPath = process.env.appPath;
+
+const { PROJECT_PATH, PACKAGE_NAME } = process.env;
+
 //创建项目
-spawnSync(`cd ${projectPath} && npm init midway -- --type=koa-v3 server`, { stdio: "inherit", shell: true });
+spawnSync(`cd ${PROJECT_PATH} && npm init midway -- --type=koa-v3 server`, { stdio: "inherit", shell: true });
 
 //将文件覆盖进去
-spawnSync(`cp ${path.join(__dirname, "api.controller.ts")} ${projectPath}/server/src/controller/`, { stdio: "inherit", shell: true });
-spawnSync(`cp \
-${path.join(__dirname, "configuration.ts")} \
-${path.join(__dirname, "../common/bridge.ts")} \
-${projectPath}/server/src/`, { stdio: "inherit", shell: true });
-spawnSync(`cp ${path.join(__dirname, "next-bridge.middleware.ts")} ${projectPath}/server/src/middleware/`, { stdio: "inherit", shell: true });
-changePackageJson(`${projectPath}/server/package.json`, projectPath + "-server");
+fse.copySync(path.join(__dirname, "api.controller.ts"), `${PROJECT_PATH}/server/src/controller/api.controller.ts`);
+fse.copySync(path.join(__dirname, "configuration.ts"), `${PROJECT_PATH}/server/src/configuration.ts`);
+fse.copySync(path.join(__dirname, "../common/bridge.ts"), `${PROJECT_PATH}/server/src/bridge.ts`);
+fse.copySync(path.join(__dirname, "next-bridge.middleware.ts"), `${PROJECT_PATH}/server/src/middleware/next-bridge.middleware.ts`);
+changePackageJson(`${PROJECT_PATH}/server/package.json`, PACKAGE_NAME + "-server");
