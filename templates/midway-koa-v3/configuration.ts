@@ -6,7 +6,7 @@ import * as info from '@midwayjs/info';
 import { join } from 'path';
 import { ReportMiddleware } from './middleware/report.middleware';
 import { NextMiddleware } from './middleware/next-bridge.middleware';
-import { getKoaApi } from './bridge';
+import { getKoaApi } from 'fullstack-helper';
 
 @Configuration({
   imports: [

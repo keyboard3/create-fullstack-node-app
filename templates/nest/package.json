@@ -6,10 +6,13 @@
     "render"
   ],
   "scripts": {
-    "renderBuild": "cd render && npm run build",
-    "serverBuild": "cd server && npm run build",
-    "build": "npm run renderBuild && npm run serverBuild",
-    "dev": "cd server && npm run start:dev",
-    "start": "cd server && npm run start:prod"
+    "renderBuild": "yarn workspace render run build",
+    "serverBuild": "yarn workspace server run build",
+    "build": "yarn workspaces run build",
+    "dev": "yarn workspace server start:dev",
+    "start": "yarn workspace server start:prod"
+  },
+  "dependencies": {
+    "fullstack-helper": "^0.0.1"
   }
 }

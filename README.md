@@ -51,7 +51,6 @@ Generated Project Structure (Next.js / Nest.js)
 │   │   ├── app.controller.ts
 │   │   ├── app.module.ts
 │   │   ├── app.service.ts
-│   │   ├── bridge.ts
 │   │   └── main.ts
 │   ├── test
 │   │   ├── app.e2e-spec.ts
