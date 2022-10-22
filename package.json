@@ -1,6 +1,6 @@
 {
   "name": "create-fullstack-node-app",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "main": "./dist/index.js",
   "description": "Provide single node.js server with popular ssr and web framework",
   "license": "MIT",
